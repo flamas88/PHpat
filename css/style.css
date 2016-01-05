@@ -31,3 +31,10 @@
 #footer {
     background-image: url("images/bricks2.png'");
 }
+/*
+form[name ="inscription"].error{
+    background-color: coral;
+}*/
+.error{
+    background-color: coral;
+}
