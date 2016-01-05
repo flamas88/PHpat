@@ -40,7 +40,6 @@ if (array_key_exists('pseudo', $_POST)) {
 $email_ok = false;
 if (array_key_exists('email', $_POST)) {
   $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_MAGIC_QUOTES);
-  $email = filter_var($email, FILTER_SANITIZE_STRING);
   $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
   $email_ok = (1 === preg_match('/^[A-Za-z0-9%@&$!*?]{5,}$/', $email));
