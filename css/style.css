@@ -23,14 +23,6 @@
     background-color: blueviolet;
 }
 
-#header{
-    background-image: url("images/bricks2.png'");
-
-}
-
-#footer {
-    background-image: url("images/bricks2.png'");
-}
 /*
 form[name ="inscription"].error{
     background-color: coral;

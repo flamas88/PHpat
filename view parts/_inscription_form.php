@@ -4,18 +4,22 @@ require_once 'view parts/_page_base.php';
 ?>
 
 <?php
-var_dump($_POST);
-$in_post = array_key_exists('register',$_POST);
-$msg_nom = ' ';
+var_dump($_POST); // inspecter les données POST
+$in_post = array_key_exists('register',$_POST); // En est en réception
 
+/*validation du nom*/
+$msg_nom = ' '; // message de feedback validation, affiché si non vide
 $nom_ok = false;
 if (array_key_exists('nom', $_POST)) {
+ /* validation du nom : min 3 caractères*/
   $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
   $nom_ok = (1 === preg_match('/^[A-Za-z]{3,}$/', $nom));
-if( ! $nom_ok){
+if( ! $nom_ok){ //si le prénom n'est pas valide
 $msg_nom = 'Le nom ne doit contenir que des lettres (min 3).';
 }
 }
+
+/*validaqtion du prenom*/
 $msg_prenom = ' ';
 $prenom_ok = false;
 if (array_key_exists('prenom', $_POST)) {
@@ -32,7 +36,7 @@ if (array_key_exists('pseudo', $_POST)) {
   $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_STRING);
   $pseudo_ok = (1 === preg_match('/^[a-zA-Z0-9]{4,}$/', $pseudo));
   if (! $pseudo_ok){
-    $msg_pseudo = ' le pseudo doit contenir des lettres et des chiffres (min 4)';
+    $msg_pseudo = ' le pseudo doit contenir des caractères alpha ou des chiffres (min 4)';
   }
 }
 $msg_email= ' ';
@@ -42,7 +46,7 @@ if (array_key_exists('email', $_POST)) {
   $email = filter_var($email, FILTER_VALIDATE_EMAIL);
   $email_ok = (false !== $email);
   if(! $email_ok){
-    $msg_email = 'l\'email doit contenir au moins @';
+    $msg_email = 'l\'email doit respecter la norme';
   }
 }
 $msg_password = ' ';
@@ -51,7 +55,7 @@ if (array_key_exists('password', $_POST)) {
   $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
   $password_ok = (1 === preg_match('/^[A-Za-z0-9%&$!*?]{4,}$/', $password));
 if(!$password_ok){
-  $msg_password = ' le password ne doit contenir des lettres % , $ , ! , * , ? (min 4)';
+  $msg_password = ' le password ne doit contenir des alpha, chiffres, % , $ , ! , * , ? (min 4)';
 }
 }
 
